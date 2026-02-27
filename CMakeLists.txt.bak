@@ -1,0 +1,43 @@
+cmake_minimum_required(VERSION 4.1)
+
+project("PlanetGenerator")
+
+
+
+
+add_executable(${PROJECT_NAME} 
+	src/glad.c 
+	src/main.cpp 
+	src/imgui.cpp 
+	src/imgui_draw.cpp 
+	src/imgui_impl_glfw.cpp 
+	src/imgui_impl_opengl3.cpp 
+	src/imgui_tables.cpp 
+	src/imgui_widgets.cpp 
+	src/imgui_demo.cpp
+	src/nfd_win.cpp) 
+target_include_directories(${PROJECT_NAME} PRIVATE include)
+target_include_directories(${PROJECT_NAME} PRIVATE include/imgui)
+target_include_directories(${PROJECT_NAME} PRIVATE include/imgui/backends)
+target_include_directories(${PROJECT_NAME} PRIVATE include/glm)
+
+#GLFW SOURCE BUILD
+add_subdirectory(C:/projects/MM2/extern/glfw-3.4/glfw-3.4)
+target_link_libraries(${PROJECT_NAME} glfw)
+find_package(OpenGL REQUIRED)
+target_link_libraries(${PROJECT_NAME} OpenGL::GL)
+
+
+#ASSIMP
+set(Assimp_DIR "C:/Program Files (x86)/Assimp/lib/cmake/assimp-6.0" CACHE PATH "Directory containing AssimpConfig.cmake")
+set(ASSIMP_LIBRARY_FILE "C:/Program Files (x86)/Assimp/lib/libassimp.dll.a")
+find_package(assimp REQUIRED)
+target_link_libraries(${PROJECT_NAME}  ${ASSIMP_LIBRARY_FILE})
+
+
+#GLM
+set(Assimp_DIR "C:/Program Files (x86)/Assimp/lib/cmake/assimp-6.0" CACHE PATH "Directory containing AssimpConfig.cmake")
+set(ASSIMP_LIBRARY_FILE "C:/Program Files (x86)/Assimp/lib/libassimp.dll.a")
+find_package(assimp REQUIRED)
+target_link_libraries(${PROJECT_NAME}  ${ASSIMP_LIBRARY_FILE})
+
